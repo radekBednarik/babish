@@ -136,6 +136,15 @@ export function App(): JSX.Element {
 
       <footer className="border-t border-white/10 pt-6 text-center text-[11px] text-slate-400">
         Pouze informativní. Není spojeno s žádnou institucí.
+        <span className="mx-2">•</span>
+        <a
+          href="https://github.com/radekBednarik/babish"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-slate-300"
+        >
+          Repozitář na GitHubu
+        </a>
       </footer>
     </div>
   );
