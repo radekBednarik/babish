@@ -1,0 +1,22 @@
+# AGENTS.md
+
+- Build: `pnpm build` (runs `tsc -b` then Vite).
+- Dev server: `pnpm dev`; Preview prod build: `pnpm preview`.
+- Lint all: `pnpm lint`; Lint one file: `pnpm eslint src/path/to/file.tsx --fix`.
+- Format: `pnpm format`; Check only: `pnpm prettier ./src --check`.
+- Tests: none configured. Recommended: Vitest + @testing-library/preact. After setup: all `pnpm vitest`, single file `pnpm vitest src/foo.test.ts`, single test `pnpm vitest -t "test name"`.
+- Module style: ESM only, bundler resolution. Include file extensions in imports (TS `allowImportingTsExtensions: true`).
+- Type imports: use `import type { X } from "..."` (TS `verbatimModuleSyntax: true`).
+- Exports: prefer named exports; avoid default unless required.
+- Side effects first: place CSS or polyfill imports (e.g., `./index.css`) before value imports.
+- JSX/Preact: `jsx: react-jsx`, `jsxImportSource: preact`. Components are PascalCase; props typed with interfaces or type aliases.
+- React compat: `react`/`react-dom` map to `preact/compat`; don’t mix React and Preact variants in the same file.
+- TypeScript: `strict: true`; avoid `any`; use `unknown` + narrowing. Keep explicit return types for exported functions.
+- Dead code: `noUnusedLocals`/`noUnusedParameters` are enabled—delete unused vars/params.
+- Naming: camelCase variables/functions; PascalCase components/types; files lower-case (e.g., `app.tsx`, `main.tsx`).
+- Formatting: Prettier (tabWidth 2, double quotes). Don’t fight the formatter—run before committing.
+- Error handling: throw `Error` with specific messages; in `catch (e: unknown)`, refine with `instanceof` or guards; avoid swallowing errors.
+- Tailwind: keep className strings readable; extract complex variants into small components.
+- Vite: keep plugins in `vite.config.ts`; use `import.meta.env` for env access.
+- Repo rules: No Cursor (.cursor/\*) or Copilot (.github/copilot-instructions.md) rules found.
+- Workspace: `pnpm-workspace.yaml` present but single package—run commands from repo root.
