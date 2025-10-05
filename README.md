@@ -6,7 +6,7 @@ The UI is in Czech and renders a live-updating breakdown: roky, měsíce, dny, h
 
 - Cíl: 3. 10. 2029, 00:00 (místní čas)
 - Jazyk: čeština (`<html lang="cs">`)
-- Obrázek: `public/andrej.png` (Open Graph + Twitter cards)
+- Obrázek: `public/andrej.webp` (Open Graph + Twitter cards)
 
 ## Tech Stack
 
@@ -41,7 +41,7 @@ The UI is in Czech and renders a live-updating breakdown: roky, měsíce, dny, h
 - `src/app.tsx`: App shell and countdown component (diff in years→seconds)
 - `src/main.tsx`: App bootstrap + CSS import order
 - `src/index.css`: Tailwind entry (`@import "tailwindcss";`)
-- `public/andrej.png`: Open Graph/Twitter preview image
+- `public/andrej.webp`: Open Graph/Twitter preview image
 - `vite.config.ts`: Preact + Tailwind plugins
 
 ## Configuration Notes

@@ -111,7 +111,7 @@ export function App(): JSX.Element {
     <div className="mx-auto max-w-5xl min-h-dvh flex flex-col gap-8 md:gap-12 px-4 md:px-6 py-8 md:py-14">
       <header className="flex items-center gap-5 md:gap-6">
         <img
-          src="/andrej.png"
+          src="/andrej.webp"
           alt="Karikatura Andreje Babiše – kopanec do zadku"
           className="size-20 md:size-24 rounded-xl ring-1 ring-white/15 shadow-lg"
           width={160}
