@@ -65,40 +65,77 @@ function Countdown(): JSX.Element {
   const parts = useMemo(() => diffParts(now, target), [now, target]);
   const reached = now >= target;
 
+  const pad2 = (n: number): string => n.toString().padStart(2, "0");
+
   return (
-    <section className="w-full">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5 sm:gap-4 md:gap-5">
-        {[
-          { label: "Roky", value: parts.years },
-          { label: "Měsíce", value: parts.months },
-          { label: "Dny", value: parts.days },
-          { label: "Hodiny", value: parts.hours },
-          { label: "Minuty", value: parts.minutes },
-          { label: "Sekundy", value: parts.seconds },
-        ].map((item) => (
-          <div
-            key={item.label}
-            className="rounded-2xl bg-white/5 supports-[backdrop-filter]:bg-white/5 backdrop-blur-lg ring-1 ring-white/10 p-4 md:p-6 text-center shadow-[0_10px_30px_-10px_rgba(16,24,40,0.45)]"
-          >
-            <div className="text-4xl sm:text-5xl md:text-6xl font-semibold tabular-nums tracking-tight text-white">
-              {item.value}
-            </div>
-            <div className="mt-1 text-[11px] sm:text-xs md:text-sm text-slate-400">
-              {item.label}
-            </div>
+    <section
+      aria-label="Odpočet do parlamentních voleb 2029 (ČR)"
+      className="w-full"
+    >
+      <div className="border-y border-neutral-200 dark:border-neutral-800 bg-neutral-50/60 dark:bg-zinc-900/50 py-3 md:py-4 font-mono tabular-nums text-xl md:text-2xl text-neutral-900 dark:text-zinc-100">
+        <div className="mx-auto max-w-[72ch] px-2 md:px-0">
+          <div className="flex flex-wrap items-baseline justify-center gap-x-4 gap-y-2">
+            <span className="inline-flex items-baseline gap-2 whitespace-nowrap">
+              <span className="uppercase tracking-[0.08em] text-[0.75em] text-neutral-500 dark:text-neutral-400">
+                Roky
+              </span>
+              <span className="opacity-60">:</span>
+              <span>{parts.years}</span>
+            </span>
+            <span className="text-neutral-400 dark:text-neutral-500">•</span>
+            <span className="inline-flex items-baseline gap-2 whitespace-nowrap">
+              <span className="uppercase tracking-[0.08em] text-[0.75em] text-neutral-500 dark:text-neutral-400">
+                Měsíce
+              </span>
+              <span className="opacity-60">:</span>
+              <span>{parts.months}</span>
+            </span>
+            <span className="text-neutral-400 dark:text-neutral-500">•</span>
+            <span className="inline-flex items-baseline gap-2 whitespace-nowrap">
+              <span className="uppercase tracking-[0.08em] text-[0.75em] text-neutral-500 dark:text-neutral-400">
+                Dny
+              </span>
+              <span className="opacity-60">:</span>
+              <span>{parts.days}</span>
+            </span>
+            <span className="text-neutral-400 dark:text-neutral-500">•</span>
+            <span className="inline-flex items-baseline gap-2 whitespace-nowrap">
+              <span className="uppercase tracking-[0.08em] text-[0.75em] text-neutral-500 dark:text-neutral-400">
+                Hodiny
+              </span>
+              <span className="opacity-60">:</span>
+              <span>{pad2(parts.hours)}</span>
+            </span>
+            <span className="text-neutral-400 dark:text-neutral-500">•</span>
+            <span className="inline-flex items-baseline gap-2 whitespace-nowrap">
+              <span className="uppercase tracking-[0.08em] text-[0.75em] text-neutral-500 dark:text-neutral-400">
+                Minuty
+              </span>
+              <span className="opacity-60">:</span>
+              <span>{pad2(parts.minutes)}</span>
+            </span>
+            <span className="text-neutral-400 dark:text-neutral-500">•</span>
+            <span className="inline-flex items-baseline gap-2 whitespace-nowrap">
+              <span className="uppercase tracking-[0.08em] text-[0.75em] text-neutral-500 dark:text-neutral-400">
+                Sekundy
+              </span>
+              <span className="opacity-60">:</span>
+              <span>{pad2(parts.seconds)}</span>
+            </span>
           </div>
-        ))}
+        </div>
       </div>
+
       {reached ? (
-        <div className="mt-6 flex justify-center">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300 ring-1 ring-emerald-400/30">
+        <div className="mt-3 text-center">
+          <span className="text-xs font-medium text-emerald-700 dark:text-emerald-300">
             Je čas voleb. Nezapomeňte jít volit!
           </span>
         </div>
       ) : (
-        <div className="mt-6 flex justify-center">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-[11px] sm:text-xs font-medium text-slate-300 ring-1 ring-white/15">
-            Cíl: 3. 10. 2029, 00:00 (místní čas)
+        <div className="mt-3 text-center">
+          <span className="text-[11px] text-neutral-500 dark:text-neutral-400">
+            Cíl: začátek parlamentních voleb — 3. 10. 2029, 00:00 (místní čas)
           </span>
         </div>
       )}
@@ -108,40 +145,55 @@ function Countdown(): JSX.Element {
 
 export function App(): JSX.Element {
   return (
-    <div className="mx-auto max-w-5xl min-h-dvh flex flex-col gap-8 md:gap-12 px-4 md:px-6 py-8 md:py-14">
-      <header className="flex items-center gap-5 md:gap-6">
-        <img
-          src="/andrej.webp"
-          alt="Karikatura Andreje Babiše – kopanec do zadku"
-          className="size-20 md:size-24 rounded-xl ring-1 ring-white/15 shadow-lg"
-          width={160}
-          height={120}
-          loading="lazy"
-        />
-        <div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight">
-            <span className="bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
-              Kolik času zbývá, než Babiš vypadne?
-            </span>
-          </h1>
-          <p className="mt-1.5 text-base md:text-lg text-slate-400">
-            Odpočítáváme 4 roky od 3. 10. 2025 → 3. 10. 2029
-          </p>
+    <div className="mx-auto max-w-[72ch] min-h-dvh flex flex-col gap-8 md:gap-10 px-4 md:px-0 py-8 md:py-12">
+      <header className="pt-2">
+        <div className="text-[11px] uppercase tracking-[0.14em] text-neutral-500 dark:text-neutral-400">
+          Parlamentní volby ČR 2029
         </div>
+        <h1 className="mt-2 font-serif text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+          Kolik času zbývá, než Babiš vypadne?
+        </h1>
+        <p className="mt-2 text-neutral-600 dark:text-neutral-300">
+          Odpočítáváme čas do parlamentních voleb v roce 2029
+        </p>
       </header>
 
-      <main className="flex-1 mt-8 md:mt-12">
+      <main className="flex-1 mt-6 md:mt-8">
         <Countdown />
+
+        <article className="mt-8 md:mt-10">
+          <figure className="my-4 md:my-6">
+            <img
+              src="/andrej.webp"
+              alt="Karikatura Andreje Babiše – kopanec do zadku"
+              className="w-full md:w-auto md:float-right md:ml-6 md:mb-2 border border-neutral-200 dark:border-neutral-800"
+              width={160}
+              height={120}
+              loading="lazy"
+            />
+            <figcaption className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+              Karikatura Andreje Babiše – kopanec do zadku
+            </figcaption>
+          </figure>
+
+          <p className="mt-4 text-[1.05rem] leading-7 first-letter:float-left first-letter:mr-3 first-letter:text-6xl md:first-letter:text-7xl first-letter:leading-[0.9] first-letter:font-bold first-letter:text-neutral-800 dark:first-letter:text-neutral-200">
+            Odpočet do parlamentních voleb v ČR v roce 2029. Tato stránka
+            zobrazuje zbývající roky, měsíce, dny, hodiny, minuty a sekundy do
+            začátku hlasování.
+          </p>
+
+          <div className="clear-both" />
+        </article>
       </main>
 
-      <footer className="border-t border-white/10 pt-6 text-center text-[11px] text-slate-400">
+      <footer className="mt-10 border-t border-neutral-200 dark:border-neutral-800 pt-6 text-center text-[11px] text-neutral-500">
         Pouze informativní. Není spojeno s žádnou institucí.
         <span className="mx-2">•</span>
         <a
           href="https://github.com/radekBednarik/babish"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline hover:text-slate-300"
+          className="underline hover:text-neutral-700 dark:hover:text-neutral-300"
         >
           Repozitář na GitHubu
         </a>
